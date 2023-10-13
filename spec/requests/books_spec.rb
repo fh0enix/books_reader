@@ -4,11 +4,11 @@ require 'rails_helper'
 
 RSpec.describe '/books', type: :request do
   let(:valid_attributes) do
-    attributes_for(:book) # Використовуємо фабрику для отримання валідних атрибутів
+    attributes_for(:book) 
   end
 
   let(:invalid_attributes) do
-    { title: '', author: '', isbn: '', description: '' } # Параметри, які призведуть до невалідного запису
+    { title: '', author: '', isbn: '', description: '' }
   end
 
   describe 'POST /create' do
@@ -40,11 +40,11 @@ RSpec.describe '/books', type: :request do
   end
 
   describe 'PATCH /update' do
-    let(:book) { create(:book) } # Створюємо запис з використанням фабрики
+    let(:book) { create(:book) } 
 
     context 'with valid parameters' do
       let(:new_attributes) do
-        attributes_for(:book) # Використовуємо фабрику для отримання нових валідних атрибутів
+        attributes_for(:book) 
       end
 
       it 'updates the requested book' do
@@ -52,7 +52,6 @@ RSpec.describe '/books', type: :request do
         book.reload
         expect(book.title).to eq(new_attributes[:title])
         expect(book.author).to eq(new_attributes[:author])
-        # Додайте перевірки для інших атрибутів
       end
 
       it 'redirects to the book' do
@@ -71,7 +70,7 @@ RSpec.describe '/books', type: :request do
   end
 
   describe 'DELETE /destroy' do
-    let!(:book) { create(:book) } # Створюємо запис і зберігаємо його ID
+    let!(:book) { create(:book) } 
 
     it 'destroys the requested book' do
       expect do

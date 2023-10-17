@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe BooksController, type: :request do
+RSpec.describe '/books', type: :request do
   let(:valid_attributes) { attributes_for(:book) }
-  let(:invalid_attributes) { { title: '' } }
+  let(:invalid_attributes) { { title: '', author: '', isbn: '', description: '' } }
 
-  describe 'POST #create' do
+  describe 'POST /create' do
     context 'with valid parameters' do
       it 'creates a new Book' do
         expect do
-          post books_url, params: valid_attributes
+          post books_url, params: { book: valid_attributes }
         end.to change(Book, :count).by(1)
       end
 
@@ -43,6 +43,7 @@ RSpec.describe BooksController, type: :request do
         patch book_url(book), params: { book: new_attributes }
         book.reload
         expect(book.title).to eq(new_attributes[:title])
+        expect(book.author).to eq(new_attributes[:author])
       end
 
       it 'redirects to the book' do
@@ -55,7 +56,7 @@ RSpec.describe BooksController, type: :request do
     context 'with invalid parameters' do
       it 'renders a response with 422 status (i.e., to display the "edit" template)' do
         patch book_url(book), params: { book: invalid_attributes }
-        expect(response).to have_http_status(:be_unprocessable)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -71,7 +72,6 @@ RSpec.describe BooksController, type: :request do
 
     it 'redirects to the books list' do
       delete book_url(book)
-
       expect(response).to redirect_to(books_url)
     end
   end

@@ -10,3 +10,6 @@ require 'faker'
     description: Faker::Lorem.paragraph
   )
 end
+
+FactoryBot.create_list(:book, 100)
+

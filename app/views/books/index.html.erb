@@ -5,6 +5,8 @@
   </div>
 
   <div id="books" class="min-w-full">
-    <%= render @books %>
-  </div>
+    <% @books.each do |book| %>
+      <%= render partial: "books/book", locals: { book: book } %>
+    <% end %>
+   </div>
 </div>

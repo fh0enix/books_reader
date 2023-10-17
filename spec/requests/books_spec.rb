@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe '/books', type: :request do
+RSpec.describe BooksController, type: :request do
   let(:valid_attributes) { attributes_for(:book) }
-  let(:invalid_attributes) { { title: '', author: '', isbn: '', description: '' } }
+  let(:invalid_attributes) { { title: '' } }
 
-  describe 'POST /create' do
+  describe 'POST #create' do
     context 'with valid parameters' do
       it 'creates a new Book' do
         expect do
@@ -72,6 +72,7 @@ RSpec.describe '/books', type: :request do
 
     it 'redirects to the books list' do
       delete book_url(book)
+      
       expect(response).to redirect_to(books_url)
     end
   end

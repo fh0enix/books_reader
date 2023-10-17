@@ -1,15 +1,6 @@
 # frozen_string_literal: true
 
-require 'faker'
-
-100.times do
-  Book.create(
-    title: Faker::Book.title,
-    author: Faker::Book.author,
-    isbn: Faker::Number.decimal_part(digits: 13),
-    description: Faker::Lorem.paragraph
-  )
-end
+require 'factory_bot_rails'
 
 FactoryBot.create_list(:book, 100)
 

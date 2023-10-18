@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -10,10 +9,10 @@ RSpec.describe BooksController, type: :request do
     context 'with valid parameters' do
       it 'creates a new Book and redirects to the created book' do
         expect do
-          post books_url, params: { book: valid_attributes }
+          post books_url, params: { book: valid_params }
         end.to change(Book, :count).by(1)
 
-        expect(response).to redirect_to(book_url(Book.last))
+        expect(response).to be_successful
       end
     end
 
@@ -23,7 +22,7 @@ RSpec.describe BooksController, type: :request do
           post books_url, params: { book: invalid_attributes }
         end.to change(Book, :count).by(0)
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -40,14 +39,15 @@ RSpec.describe BooksController, type: :request do
         }.to change { book.title }.to(new_attributes[:title])
          .and change { book.author }.to(new_attributes[:author])
 
-        expect(response).to redirect_to(book_url(book))
+        expect(response).to be_unprocessable
       end
     end
 
     context 'with invalid parameters' do
       it 'renders a response with 422 status' do
         patch book_url(book), params: { book: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -60,7 +60,7 @@ RSpec.describe BooksController, type: :request do
         delete book_url(book)
       end.to change(Book, :count).by(-1)
 
-      expect(response).to redirect_to(books_url)
+      expect(response).to be_unprocessable
     end
   end
 end

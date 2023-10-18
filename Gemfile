@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 source 'https://rubygems.org'
 
@@ -11,20 +10,23 @@ gem 'sprockets-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'importmap-rails'
+gem 'simple_form'
+gem 'tailwindcss-rails'
+gem 'turbo-rails'
 
-group :development, :test do
-  gem 'debug', platforms: %i[mri windows]
-  gem 'factory_bot_rails'
-  gem 'faker'
+group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', require: false
 end
 
+group :development, :test do
+  gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
 group :development do
-  gem 'importmap-rails'
-  gem 'simple_form'
-  gem 'tailwindcss-rails'
-  gem 'turbo-rails'
   gem 'web-console'
 end

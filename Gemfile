@@ -17,6 +17,7 @@ gem 'turbo-rails'
 
 group :test do
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', require: false
 end

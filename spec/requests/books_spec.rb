@@ -1,66 +1,126 @@
-
 require 'rails_helper'
 
-RSpec.describe BooksController, type: :request do
-  let(:valid_attributes) { attributes_for(:book) }
-  let(:invalid_attributes) { { title: '' } }
+RSpec.describe BooksController, type: :controller do
+  let(:valid_book_attributes) { attributes_for(:book) }
+  let(:invalid_book_attributes) { attributes_for(:book, title: nil) }
+  let!(:book) { create(:book) }
+
+  describe 'GET #index' do
+    it 'returns a successful response' do
+      get :index
+      expect(response).to be_successful
+    end
+
+    it 'assigns @books' do
+      get :index
+      expect(assigns(:books)).to eq([book])
+    end
+  end
+
+  describe 'GET #show' do
+    it 'returns a successful response' do
+      get :show, params: { id: book.id }
+      expect(response).to be_successful
+    end
+
+    it 'assigns @book' do
+      get :show, params: { id: book.id }
+      expect(assigns(:book)).to eq(book)
+    end
+  end
+
+  describe 'GET #new' do
+    it 'returns a successful response' do
+      get :new
+      expect(response).to be_successful
+    end
+
+    it 'assigns a new book as @book' do
+      get :new
+      expect(assigns(:book)).to be_a_new(Book)
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'returns a successful response' do
+      get :edit, params: { id: book.id }
+      expect(response).to be_successful
+    end
+
+    it 'assigns the requested book as @book' do
+      get :edit, params: { id: book.id }
+      expect(assigns(:book)).to eq(book)
+    end
+  end
 
   describe 'POST #create' do
     context 'with valid parameters' do
-      it 'creates a new Book and redirects to the created book' do
+      it 'creates a new book' do
         expect do
-          post books_url, params: { book: valid_params }
+          post :create, params: { book: valid_book_attributes }
         end.to change(Book, :count).by(1)
+      end
 
-        expect(response).to be_successful
+      it 'redirects to the created book' do
+        post :create, params: { book: valid_book_attributes }
+        expect(response).to redirect_to(book_path(Book.last))
       end
     end
 
     context 'with invalid parameters' do
-      it 'does not create a new Book and renders a response with 422 status' do
+      it 'does not create a new book' do
         expect do
-          post books_url, params: { book: invalid_attributes }
-        end.to change(Book, :count).by(0)
+          post :create, params: { book: invalid_book_attributes }
+        end.to_not change(Book, :count)
+      end
 
-        expect(response).to be_unprocessable
+      it 'renders the new template' do
+        post :create, params: { book: invalid_book_attributes }
+        expect(response).to render_template(:new)
       end
     end
   end
 
   describe 'PATCH #update' do
-    let(:book) { create(:book) }
-    let(:new_attributes) { attributes_for(:book) }
-
     context 'with valid parameters' do
-      it 'updates the requested book and redirects to the book' do
-        expect {
-          patch book_url(book), params: { book: new_attributes }
-          book.reload
-        }.to change { book.title }.to(new_attributes[:title])
-         .and change { book.author }.to(new_attributes[:author])
+      it 'updates the requested book' do
+        new_attributes = attributes_for(:book, title: 'New Title')
+        patch :update, params: { id: book.id, book: new_attributes }
+        book.reload
+        expect(book.title).to eq('New Title')
+      end
 
-        expect(response).to be_unprocessable
+      it 'redirects to the book' do
+        new_attributes = attributes_for(:book, title: 'New Title')
+        patch :update, params: { id: book.id, book: new_attributes }
+        expect(response).to redirect_to(book_path(book))
       end
     end
 
     context 'with invalid parameters' do
-      it 'renders a response with 422 status' do
-        patch book_url(book), params: { book: invalid_attributes }
+      it 'does not update the requested book' do
+        patch :update, params: { id: book.id, book: invalid_book_attributes }
+        book.reload
+        expect(book.title).not_to be_nil
+      end
 
-        expect(response).to be_unprocessable
+      it 'renders the edit template' do
+        patch :update, params: { id: book.id, book: invalid_book_attributes }
+        expect(response).to render_template(:edit)
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    let!(:book) { create(:book) }
-
-    it 'destroys the requested book and redirects to the books list' do
+    it 'destroys the requested book' do
       expect do
-        delete book_url(book)
+        delete :destroy, params: { id: book.id }
       end.to change(Book, :count).by(-1)
+    end
 
-      expect(response).to be_unprocessable
+    it 'redirects to the books list' do
+      delete :destroy, params: { id: book.id }
+      expect(response).to redirect_to(books_path)
     end
   end
 end

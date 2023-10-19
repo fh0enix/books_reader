@@ -5,7 +5,6 @@ ruby '3.2.2'
 
 gem 'bootsnap', require: false
 gem 'rails', '~> 7.1.1'
-gem 'rubocop-rails', require: false
 gem 'sprockets-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'

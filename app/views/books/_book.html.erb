@@ -19,9 +19,11 @@
     <%= book.description %>
   </p>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this book", book_path(book), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this book", edit_book_path(book), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <div>
+    <%= link_to "Show this book", book_path(book), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+    <%= link_to "Edit this book", edit_book_path(book), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this book", book_path(book), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-blue-600 text-white font-medium" %>
+    </div>
+  </div>
 </div>

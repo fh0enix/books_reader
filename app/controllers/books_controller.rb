@@ -40,7 +40,7 @@ class BooksController < ApplicationController
 
     @book.destroy
 
-    redirect_to books_path, notice: 'Book was successfully destroyed.', status: :see_other
+    redirect_to books_path, notice: "Book was successfully destroyed.", status: :see_other
   end
 
   private

@@ -12,24 +12,24 @@
   </head>
 
   <body>
-  
-    <%= render 'layouts/header' %>
-    
+
+    <%= render "layouts/header" %>
+
     <main class="container flex px-5 mx-auto mt-28">
 
       <div>
           <% if notice %>
-            <%= render 'layouts/alerts' %>
+            <%= render "layouts/alerts" %>
         <% end %>
       </div>
 
-      
+
       <%= yield %>
-      
+
 
 
     </main>
-    <%= render 'layouts/footer' %>
-    
+    <%= render "layouts/footer" %>
+
   </body>
 </html>

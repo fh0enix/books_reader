@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe BooksController, type: :controller do
   let(:valid_book_attributes) { attributes_for(:book) }
   let(:invalid_book_attributes) { attributes_for(:book, title: nil) }
+  let(:new_attributes) { attributes_for(:book, title: 'New Title') }
   let!(:book) { create(:book) }
 
   describe 'GET #index' do
@@ -84,14 +85,12 @@ RSpec.describe BooksController, type: :controller do
   describe 'PATCH #update' do
     context 'with valid parameters' do
       it 'updates the requested book' do
-        new_attributes = attributes_for(:book, title: 'New Title')
         patch :update, params: { id: book.id, book: new_attributes }
         book.reload
         expect(book.title).to eq('New Title')
       end
 
       it 'redirects to the book' do
-        new_attributes = attributes_for(:book, title: 'New Title')
         patch :update, params: { id: book.id, book: new_attributes }
         expect(response).to redirect_to(book_path(book))
       end

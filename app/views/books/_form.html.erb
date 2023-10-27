@@ -1,16 +1,16 @@
 <div class="my-5">
   <%= simple_form_for @book, defaults: { input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } } do |f| %>
     <div class="my-5">
-      <%= f.input :title %>
+      <%= f.input :title, label: false, hint: 'TITLE '%>
     </div>
     <div class="my-5">
-      <%= f.input :author %>
+      <%= f.input :author, label: false, hint: 'AUTHOR ' %>
     </div>
     <div class="my-5">
-      <%= f.input :isbn, placeholder: "0000000000000 - 13 digits" %>
+      <%= f.input :isbn, placeholder: "0000000000000 - 13 digits", label: false, hint: 'ISBN ' %>
     </div>
     <div class="my-5">
-      <%= f.input :description %>
+      <%= f.input :description, label: false, hint: 'DESCRIPTION ' %>
      </div>
     <div class="my-5">
       <%= f.button :submit, class: "btn-green" %>

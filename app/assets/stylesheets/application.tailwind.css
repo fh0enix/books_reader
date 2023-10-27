@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
 
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .btn-red {
+    @apply px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-lg focus:outline-none;
+  }
+  .btn-amber {
+    @apply px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-amber-500 active:bg-amber-600 hover:shadow-lg focus:outline-none;
+  }
+  .btn-green {
+    @apply px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-teal-500 rounded shadow outline-none active:bg-teal-600 hover:shadow-lg focus:outline-none;
+  }
+  .flash {
+    @apply container flex px-5 mx-auto mt-20;
+  }
+  .flash .flash-notice {
+    @apply inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50;
+  }
+  .flash .flash-alert {
+    @apply inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50;
   }
 }
-
-*/

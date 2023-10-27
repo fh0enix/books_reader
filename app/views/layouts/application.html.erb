@@ -11,25 +11,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-
-    <%= render "layouts/header" %>
-
-    <main class="container flex px-5 mx-auto mt-28">
-
-      <div>
-          <% if notice %>
-            <%= render "layouts/alerts" %>
-        <% end %>
-      </div>
-
-
+  <body class="bg-yellow-50">
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+    <div class="flash">
+      <%= render 'layouts/alerts' %>
+    </div>
+    <main class="container flex px-5 mx-auto mt-6">
       <%= yield %>
-
-
-
     </main>
-    <%= render "layouts/footer" %>
-
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
+
 </html>

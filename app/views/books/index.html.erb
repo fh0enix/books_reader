@@ -1,9 +1,7 @@
 <div class="w-full">
   <div class="flex items-center justify-between">
-    <h1 class="text-4xl font-bold">Books</h1>
-    <%= link_to "New book", new_book_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "UPLOAD NEW BOOK", new_book_path, class: "btn-green" %>
   </div>
-
   <div id="books" class="min-w-full">
       <%= render partial: "books/book", collection: @books %>
   </div>

@@ -14,7 +14,7 @@
     @apply inline-flex items-center justify-center gap-2 px-4 py-3 -ml-px text-sm font-medium text-gray-700 align-middle transition-all bg-white border first:rounded-l-lg first:ml-0 last:rounded-r-lg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-cyan-300;
   }
   .flash {
-    @apply container flex px-5 mx-auto mt-20;
+    @apply w-full mx-auto md:w-2/3;
   }
   .flash .flash-notice {
     @apply inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50;

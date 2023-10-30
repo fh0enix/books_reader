@@ -16,11 +16,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.create(book_params)
+    @book = Book.new(book_params)
 
-    if @book.save
+    if params[:book][:action] == "create" && @book.save
       flash[:notice] = "Book was successfully created."
-
+      redirect_to book_path(@book)
+    elsif params[:book][:action] == "update" && @book.update(book_params)
+      flash[:notice] = "Book was successfully updated."
       redirect_to book_path(@book)
     else
       render :new, status: :unprocessable_entity

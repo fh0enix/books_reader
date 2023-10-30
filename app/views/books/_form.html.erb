@@ -1,5 +1,5 @@
 <div class="my-5">
-  <%= simple_form_for @book, url: books_path, defaults: { input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } } do |f| %>
+  <%= simple_form_for @book, defaults: { input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } } do |f| %>
     <div class="my-5">
       <%= f.input :title, label: false, hint: 'TITLE '%>
     </div>
@@ -12,6 +12,9 @@
     <div class="my-5">
       <%= f.input :description, label: false, hint: 'DESCRIPTION ' %>
      </div>
+
+     <%= f.hidden_field :action, value: @book.new_record? ? "create" : "update" %>
+
     <div class="my-5">
       <%= f.button :submit, class: "btn-green" %>
     </div>

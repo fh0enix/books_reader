@@ -19,8 +19,9 @@ class BooksController < ApplicationController
     @book = Book.create(book_params)
 
     if @book.save
-      redirect_to book_path(@book)
       flash[:notice] = "Book was successfully created."
+
+      redirect_to book_path(@book)
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,8 +31,9 @@ class BooksController < ApplicationController
     @book = resourse
 
     if @book.update(book_params)
-      redirect_to book_path(@book)
       flash[:notice] = "Book was successfully updated."
+
+      redirect_to book_path(@book)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,8 +42,9 @@ class BooksController < ApplicationController
   def destroy
     resourse.destroy
 
-    redirect_to books_path
     flash[:alert] = "Book was successfully deleted."
+
+    redirect_to books_path
   end
 
   private

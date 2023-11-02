@@ -1,28 +1,7 @@
+@import "./components/buttons.css";
+@import "./components/flashes.css";
+@import "./components/forms.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-@layer components {
-  .form {
-    @apply block w-full px-3 py-2 mt-2 border border-gray-200 rounded-md shadow outline-none;
-  }
-  .btn-red {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-3 -ml-px text-sm font-medium text-red-700 align-middle transition-all bg-white border rounded-lg first:rounded-l-lg first:ml-0 last:rounded-r-lg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-red-600 dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-rose-300;
-  }
-  .btn-amber {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-3 -ml-px text-sm font-medium text-gray-700 align-middle transition-all bg-white border first:rounded-l-lg first:ml-0 last:rounded-r-lg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-amber-600 dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-amber-300;
-  }
-  .btn-green {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-3 -ml-px text-sm font-medium text-gray-700 align-middle transition-all bg-white border first:rounded-l-lg first:ml-0 last:rounded-r-lg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-green-600 dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-cyan-300;
-  }
-  .flash {
-    @apply w-full mx-auto md:w-2/3;
-  }
-  .flash .flash-notice {
-    @apply inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50;
-  }
-  .flash .flash-alert {
-    @apply inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50;
-  }
-}

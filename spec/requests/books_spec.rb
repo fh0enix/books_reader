@@ -5,6 +5,7 @@ RSpec.describe BooksController, type: :controller do
   let(:invalid_book_attributes) { attributes_for(:book, title: nil) }
   let(:new_attributes) { attributes_for(:book, title: "New Title") }
   let!(:book) { create(:book) }
+  render_views
 
   describe "GET #index" do
     it "returns a successful response" do
@@ -20,6 +21,12 @@ RSpec.describe BooksController, type: :controller do
     it "renders the index template" do
       get :index
       expect(response).to render_template(:index)
+    end
+
+    it "displays a specific book title in the list" do
+      get :index
+
+      expect(response.body).to include(book.title)
     end
   end
 

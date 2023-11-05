@@ -1,5 +1,6 @@
 <div id="books" class="grid border-0 rounded-none shadow-none divide-y overflow-hidden sm:block sm:divide-y sm:divide-x dark:border-gray-700 dark:shadow-slate-700/[.7] dark:divide-gray-600 float-none static m-10">
 <div>
+  <%= current_user.email %>
   <%= link_to "UPLOAD NEW BOOK", new_book_path, class: "btn-green" %>
 </div class="grid">
   <%= render partial: "books/book", collection: @books %>

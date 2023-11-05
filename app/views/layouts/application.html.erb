@@ -11,9 +11,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-400">
+
+    <div class="flash">
+      <%= render 'layouts/alerts' %>
+    </div>
+
+    <main>
       <%= yield %>
     </main>
+
   </body>
+
 </html>

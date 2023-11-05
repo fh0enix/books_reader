@@ -1,13 +1,7 @@
+@import "./components/buttons.css";
+@import "./components/flashes.css";
+@import "./components/forms.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-}
-
-*/

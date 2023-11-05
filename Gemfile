@@ -4,6 +4,7 @@ source "https://rubygems.org"
 ruby "3.2.2"
 
 gem "bootsnap", require: false
+gem "devise"
 gem "rails", "~> 7.1.1"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"

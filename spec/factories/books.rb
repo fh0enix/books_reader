@@ -1,4 +1,3 @@
-
 FactoryBot.define do
   factory :book do
     title { "# #{Faker::Number.number(digits: 4)} - #{Faker::Book.title}" }

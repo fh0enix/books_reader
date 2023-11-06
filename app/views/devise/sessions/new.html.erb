@@ -1,31 +1,29 @@
-<h2>Log in</h2>
+<div class="flex items-center justify-center m-10 mt-12 text-center dark:bg-gray-800 dark:text-gray-100 rounded-3xl">
+	<div class="flex flex-col w-full max-w-lg p-12 rounded shadow-lg dark:text-gray-400">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }, defaults: { input_html: { class: "form" } }) do |f| %>
+      <div class="my-5">
+        <%= f.input :email,
+                    label: false,
+                    hint: "EMAIL ",
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    label: false,
+                    hint: "PASSWORD ",
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me,
+                    input_html: { class: "inline-flex items-center" },
+                    label: false,
+                    hint: " REMEMBER ME",
+                    as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :put }, defaults: { input_html: { class: "form" } }) do |f| %>
-  <div class="my-5">
-    <%= f.input :email,
-                label: false,
-                hint: "EMAIL ",
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                label: false,
-                hint: "PASSWORD ",
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me,
-                label: false,
-                hint: "REMEMBER ME ",
-                as: :boolean if devise_mapping.rememberable? %>
+      <div class="my-5">
+        <%= f.button :submit, "Log in", class: "btn-green" %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name), class:"btn-red" %><br />
+      </div>
+    <% end %>
   </div>
-
-  <div class="my-5">
-    <%= f.button :submit, "Log in", class: "btn-green" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
-<div class="inline-flex rounded-md shadow-sm">
-  <%= link_to "BACK TO BOOKS", books_path, class: "btn-green" %>
-</div
+</div>

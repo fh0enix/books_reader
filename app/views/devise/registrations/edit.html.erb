@@ -1,41 +1,42 @@
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, defaults: { input_html: { class: "form" } }) do |f| %>
-  <%= f.error_notification %>
+<div class="flex items-center justify-center mt-12 text-center dark:bg-gray-800 dark:text-gray-100 m-10 rounded-3xl">
+	<div class="flex flex-col w-full max-w-lg p-12 rounded shadow-lg dark:text-gray-400">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, defaults: { input_html: { class: "form" } }) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="my-5">
-    <%= f.input :first_name, label: false, hint: "FIRST NAME ", required: true, autofocus: true %>
-    <%= f.input :last_name, label: false, hint: "LAST NAME ", required: true, autofocus: true %>
-    <%= f.input :email, label: false, hint: "EMAIL ", required: true, autofocus: true %>
+      <div class="my-5">
+        <%= f.input :first_name, label: false, hint: "FIRST NAME ", required: true, autofocus: true %>
+        <%= f.input :last_name, label: false, hint: "LAST NAME ", required: true, autofocus: true %>
+        <%= f.input :email, label: false, hint: "EMAIL ", required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <% end %>
+
+        <%= f.input :password,
+                    label: false,
+                    placeholder: "password",
+                    hint: "leave it blank if you don't want to change it",
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    label: false,
+                    hint: "PASSWORD CONFIRMATION ",
+                    required: false,
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :current_password,
+                    hint: "we need your current password to confirm your changes",
+                    required: true,
+                    input_html: { autocomplete: "current-password" } %>
+      </div>
+
+      <div class="my-5">
+        <%= f.button :submit, "Update", class: "btn-green" %>
+      </div>
     <% end %>
 
-    <%= f.input :password,
-                label: false,
-                placeholder: "password",
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                label: false,
-                hint: "PASSWORD CONFIRMATION ",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+    <h3>Cancel my account</h3>
+
+    <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
   </div>
-
-  <div class="my-5">
-    <%= f.button :submit, "Update", class: "btn-green" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<div class="inline-flex rounded-md shadow-sm">
-  <%= link_to "BACK TO BOOKS", books_path, class: "btn-green" %>
-</div
+</div>

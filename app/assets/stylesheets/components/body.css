@@ -1,5 +1,0 @@
-@layer components {
-  .body {
-    @apply bg-gray-400;
-  }
-}

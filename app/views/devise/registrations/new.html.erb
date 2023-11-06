@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center mt-12 text-center dark:bg-gray-800 dark:text-gray-100 m-10 rounded-3xl">
+<div class="flex items-center justify-center m-10 mt-12 text-center dark:bg-gray-800 dark:text-gray-100 rounded-3xl">
 	<div class="flex flex-col w-full max-w-lg p-12 rounded shadow-lg dark:text-gray-400">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { input_html: { class: "form" } }) do |f| %>
       <%= f.error_notification %>
@@ -16,6 +16,12 @@
                     required: true,
                     autofocus: true,
                     input_html: { autocomplete: "last_name" }%>
+        <%= f.input :user_name,
+                    label: false,
+                    hint: "USER NAME ",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "user_name" }%>
         <%= f.input :email,
                     label: false,
                     hint: "EMAIL ",

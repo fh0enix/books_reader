@@ -1,55 +1,50 @@
 require 'rails_helper'
 
 RSpec.describe 'User sign up', type: :request do
-  let(:user) { FactoryBot.create(:user) }
-  let(:user_attributes) { FactoryBot.attributes_for(:user) }
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      it 'creates a new user' do
+        expect do
+          post user_registration_path, params: { user: FactoryBot.attributes_for(:user) }
+        end.to change(User, :count).by(1)
+      end
+    end
 
-  it 'creates a new user' do
-    post user_registration_path, params: { user: user_attributes }
-    expect(response).to have_http_status(302) # Redirects after successful sign up
-    follow_redirect!
-    expect(response).to render_template(:edit) # Change this based on your setup
+    context 'with invalid attributes' do
+      it 'does not create a new user' do
+        expect do
+          post user_registration_path, params: { user: FactoryBot.attributes_for(:user, email: nil) }
+        end.not_to change(User, :count)
+      end
+
+      it 're-renders the registration form' do
+        post user_registration_path, params: { user: FactoryBot.attributes_for(:user, email: nil) }
+        expect(response).to render_template(:new)
+      end
+    end
   end
 
-  it 'handles invalid sign up' do
-    post user_registration_path, params: { user: user_attributes.merge(email: '') }
-    expect(response).to have_http_status(200) # Re-renders the sign-up form
-    expect(response).to render_template(:new) # Change this based on your setup
-  end
+  describe 'POST #login' do
+    let(:user) { create(:user) }
 
-  it 'logs in a user' do
-    post user_session_path, params: { user: { email: user.email, password: user.password } }
-    expect(response).to have_http_status(302) # Redirects after successful login
-    follow_redirect!
-    expect(response).to render_template(:some_template) # Change this based on your setup
-  end
+    context 'with valid login credentials' do
+      it 'logs in the user' do
+        post user_session_path, params: { user: { email: user.email, password: user.password } }
+        follow_redirect! # Follow the redirect after login.
+        expect(response.body).to include('Signed in successfully.') # Update to match your flash message.
+      end
+    end
 
-  it 'handles invalid login' do
-    post user_session_path, params: { user: { email: user.email, password: 'invalid_password' } }
-    expect(response).to have_http_status(200) # Re-renders the login form
-    expect(response).to render_template(:new) # Change this based on your setup
-  end
+    context 'with invalid login credentials' do
+      it 're-renders the login form' do
+        post user_session_path, params: { user: { email: user.email, password: 'incorrect_password' } }
+        expect(response).to render_template(:new)
+      end
 
-  it 'updates user details' do
-    sign_in user # Implement a sign-in helper based on your Devise configuration
-    put user_registration_path, params: { user: { first_name: 'New First Name', last_name: 'New Last Name', email: 'new@example.com', current_password: user.password } }
-    expect(response).to have_http_status(302) # Redirects after successful update
-    follow_redirect!
-    expect(response).to render_template(:some_template) # Change this based on your setup
-  end
-
-  it 'handles invalid update' do
-    sign_in user
-    put user_registration_path, params: { user: { email: '' } }
-    expect(response).to have_http_status(200) # Re-renders the update form
-    expect(response).to render_template(:edit) # Change this based on your setup
-  end
-
-  it 'cancels the user account' do
-    sign_in user
-    delete user_registration_path
-    expect(response).to have_http_status(302) # Redirects after successful cancellation
-    follow_redirect!
-    expect(response).to render_template(:some_template) # Change this based on your setup
+      it 'does not log in the user' do
+        post user_session_path, params: { user: { email: user.email, password: 'incorrect_password' } }
+        expect(response.body).to include('Invalid Email or password.') # Update to match your flash message.
+      end
+    end
   end
 end

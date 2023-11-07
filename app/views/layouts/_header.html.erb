@@ -1,13 +1,15 @@
-<header class="p-4 dark:bg-gray-800 dark:text-gray-100 rounded-b-2xl">
+<nav class="sticky top-0 p-4 dark:bg-gray-800 dark:text-gray-100 rounded-b-2xl">
 	<div class="container flex justify-between h-16 mx-auto">
+		<a href="/books" class="flex items-center p-2">
+			<%= inline_svg "book.svg", class: "w-8 h-8 text-cyan-400" %>
+		</a>
 		<ul class="items-stretch hidden lg:flex">
 			<li class="flex">
-				<a><%= link_to "UPLOAD NEW BOOK", new_book_path, class: "flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-cyan-400 dark:border-cyan-400" %></a>
+				<% if current_user %>
+					<a><%= link_to "UPLOAD NEW BOOK", new_book_path, class: "duration-75 delay-1000 animate-pulse flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-cyan-400 dark:border-cyan-400" %></a>
+				<% end %>
 			</li>
 		</ul>
-		<a rel="noopener noreferrer" href="/books" aria-label="Back to homepage" class="flex items-center p-2 duration-75 delay-1000 animate-pulse">
-			<%= inline_svg(INLINE_SVG1) %>
-		</a>
 		<div class="items-center flex-shrink-0 hidden lg:flex">
 			<% if current_user %>
 				<div class="self-center px-8 py-3 rounded">
@@ -20,7 +22,7 @@
 			<% end %>
 		</div>
 		<button class="p-4 lg:hidden">
-			<%= inline_svg(INLINE_SVG2) %>
+			<%= inline_svg "mobile_button.svg", class: "w-6 h-6 dark:text-gray-100" %>
 		</button>
 	</div>
-</header>
+</nav>

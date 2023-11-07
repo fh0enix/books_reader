@@ -6,7 +6,7 @@ RSpec.describe 'User sign up', type: :request do
       it 'creates a new user' do
         expect do
           post user_registration_path, params: { user: FactoryBot.attributes_for(:user) }
-        end.to change(User, :count).by(1)
+        end.to change { User.count }.by(1)
       end
     end
 

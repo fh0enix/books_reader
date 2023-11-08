@@ -8,4 +8,7 @@
   .btn-green {
     @apply inline-flex items-center justify-center gap-2 px-4 py-3 -ml-px text-sm font-medium text-gray-700 align-middle transition-all bg-white border first:rounded-l-lg first:ml-0 last:rounded-r-lg hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-green-600 dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-cyan-300;
   }
+  .btn-hello {
+    @apply duration-75 delay-1000 animate-pulse flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-cyan-400 dark:border-cyan-400;
+  }
 }

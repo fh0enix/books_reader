@@ -1,7 +1,3 @@
-<div id="books" class="grid border-0 rounded-none shadow-none divide-y overflow-hidden sm:block sm:divide-y sm:divide-x dark:border-gray-700 dark:shadow-slate-700/[.7] dark:divide-gray-600 float-none static m-10">
-    <%= render "books/book", book: @book  %>
-
-    <div class="inline-flex rounded-md shadow-sm">
-      <%= link_to "BACK TO BOOKS", books_path, class: "btn-green" %>
-    </div>
+<div id="books" class="flex justify-center m-10">
+    <%= render "books/show_book", book: @book  %>
 </div>

@@ -1,0 +1,23 @@
+<div class="max-w-lg p-4 shadow-md dark:dark:bg-gray-900 dark:dark:text-gray-100 rounded-2xl">
+	<div class="flex justify-between pb-4 border-bottom">
+		<div class="flex items-center">
+      <a><%= link_to "BACK TO BOOKS", books_path, class: "mb-0 capitalize dark:dark:text-cyan-400" %></a>
+		</div>
+		<a rel="noopener noreferrer" href="#">Read book</a>
+	</div>
+	<div class="space-y-4">
+		<div class="space-y-2">
+			<img src="https://source.unsplash.com/random/480x360/?4" alt="" class="book-cover">
+			<div class="flex items-center text-xs">
+				<span>ISBN:<%= book.isbn %></span>
+			</div>
+		</div>
+		<div class="space-y-2">
+			<a rel="noopener noreferrer" href="#" class="block">
+				<h4 class="text-xl font-semibold dark:dark:text-cyan-400"><%= book.author %></h4>
+				<h3 class="text-xl font-semibold dark:dark:text-gray-100"><%= book.title %></h3>
+			</a>
+			<p class="leadi dark:dark:text-gray-400"><%= book.description %></p>
+		</div>
+	</div>
+</div>

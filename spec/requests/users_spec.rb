@@ -5,7 +5,7 @@ RSpec.describe 'User sign up', type: :request do
     context 'with valid attributes' do
       it 'creates a new user' do
         expect do
-          post user_registration_path, params: { user: FactoryBot.attributes_for(:user) }
+          post user_registration_path, params: { user: attributes_for(:user) }
         end.to change { User.count }.by(1)
       end
     end
@@ -13,12 +13,12 @@ RSpec.describe 'User sign up', type: :request do
     context 'with invalid attributes' do
       it 'does not create a new user' do
         expect do
-          post user_registration_path, params: { user: FactoryBot.attributes_for(:user, email: nil) }
+          post user_registration_path, params: { user: attributes_for(:user, email: nil) }
         end.not_to change(User, :count)
       end
 
       it 're-renders the registration form' do
-        post user_registration_path, params: { user: FactoryBot.attributes_for(:user, email: nil) }
+        post user_registration_path, params: { user: attributes_for(:user, email: nil) }
         expect(response).to render_template(:new)
       end
     end
@@ -30,8 +30,8 @@ RSpec.describe 'User sign up', type: :request do
     context 'with valid login credentials' do
       it 'logs in the user' do
         post user_session_path, params: { user: { email: user.email, password: user.password } }
-        follow_redirect! # Follow the redirect after login.
-        expect(response.body).to include('Signed in successfully.') # Update to match your flash message.
+        follow_redirect!
+        expect(response.body).to include('Signed in successfully.')
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe 'User sign up', type: :request do
 
       it 'does not log in the user' do
         post user_session_path, params: { user: { email: user.email, password: 'incorrect_password' } }
-        expect(response.body).to include('Invalid Email or password.') # Update to match your flash message.
+        expect(response.body).to include('Invalid Email or password.')
       end
     end
   end

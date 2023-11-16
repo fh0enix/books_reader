@@ -6,11 +6,16 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
 
     trait :with_content do
-      after(:create) do |book|
-        content_path = Rails.root.join("app", "assets", "book_test", "test.pdf")
-        book.pdf.attach(io: File.open(content_path),
-                        filename: "test.pdf",
-                        content_type: "application/pdf")
+      transient do
+        content_path { Rails.root.join("spec", "test_files", "test.pdf") }
+      end
+
+      after(:build) do |book, evaluator|
+        if book.persisted?
+          book.pdf.attach(io: File.open(evaluator.content_path),
+                          filename: "test.pdf",
+                          content_type: "application/pdf")
+        end
       end
     end
   end

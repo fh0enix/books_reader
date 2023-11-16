@@ -7,7 +7,7 @@ RSpec.describe BooksController, type: :controller do
 
   let(:new_attributes) { attributes_for(:book, title: "New Title") }
 
-  let!(:book) { create(:book) }
+  let!(:book) { create(:book, :with_content) }
 
   render_views
 
@@ -99,24 +99,24 @@ RSpec.describe BooksController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+      subject { post :create, params: { book: valid_book_attributes.merge(pdf: fixture_file_upload('test.pdf', 'application/pdf')) } }
+
       it "creates a new Book with an attached PDF" do
-        expect {
-          post :create, params: { book: valid_book_attributes.merge(pdf: fixture_file_upload('test.pdf', 'application/pdf')) }
-        }.to change(Book, :count).by(1)
+        expect { subject }.to change(Book, :count).by(1)
         expect(assigns(:book).pdf).to be_attached
         expect(response).to redirect_to(Book.last)
+        expect(flash[:notice]).to eq("Book was successfully created.")
       end
     end
 
     context "with invalid params" do
+      subject { post :create, params: { book: invalid_book_attributes } }
+
       it "does not create a new Book" do
-        expect {
-          post :create, params: { book: invalid_book_attributes }
-        }.to_not change(Book, :count)
+        expect { subject }.to_not change(Book, :count)
         expect(assigns(:book)).to be_a_new(Book)
         expect(response).to render_template(:new)
       end
     end
   end
-
 end

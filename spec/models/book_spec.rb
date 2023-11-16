@@ -8,5 +8,15 @@ RSpec.describe Book, type: :model do
   it { is_expected.to validate_presence_of(:isbn) }
   it { is_expected.to validate_numericality_of(:isbn).only_integer }
   it { is_expected.to validate_length_of(:isbn).is_equal_to(13) }
-  it { is_expected.to have_attached_file(:pdf) }
+  it { is_expected.to have_one_attached(:pdf) }
+
+  it "validates content type of attached file" do
+    expect(book.pdf).to be_attached
+    expect(book.pdf.content_type).to eq('application/pdf')
+  end
+
+  it "validates size of attached file" do
+    expect(book.pdf).to be_attached
+    expect(book.pdf.byte_size).to be < 20.megabytes
+  end
 end

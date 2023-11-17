@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "books#index"
-
   devise_for :users, only: [:sessions, :registrations]
+
+  root "books#index"
 
   resources :books
 

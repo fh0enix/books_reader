@@ -1,25 +1,25 @@
 <nav class="sticky top-0 p-4 dark:bg-gray-900 dark:text-gray-100 rounded-b-2xl">
-	<div class="container flex justify-between h-16 mx-auto">
-		<a href="/books" class="flex items-center p-2">
-			<%= inline_svg "book.svg", class: "w-8 h-8 text-cyan-400" %>
-		</a>
-		<div class="items-center flex-shrink-0 hidden lg:flex">
-			<% if current_user %>
-				<div class="self-center px-8 py-3 rounded">
-					<ul class="items-stretch hidden lg:flex">
-						<li class="flex">
-								<a><%= link_to "Hello #{current_user.first_name}! UPLOAD NEW BOOK", new_book_path, class: "btn-hello" %></a>
-						</li>
-					</ul>
-				</div>
-				<%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "self-center px-8 py-3 font-semibold rounded dark:bg-amber-400 dark:text-gray-900" %>
-			<% else %>
-				<%= link_to "Sign in", user_session_path, class: "self-center px-8 py-3 rounded" %>
-				<%= link_to "Sign Up", new_user_registration_path, class: "self-center px-8 py-3 font-semibold rounded dark:bg-cyan-400 dark:text-gray-900" %>
-			<% end %>
-		</div>
-		<button class="p-4 lg:hidden">
-			<%= inline_svg "mobile_button.svg", class: "w-6 h-6 dark:text-gray-100" %>
-		</button>
-	</div>
+  <div class="container flex justify-between h-16 mx-auto">
+    <a href="/books" class="flex items-center p-2">
+      <%= inline_svg "book.svg", class: "w-8 h-8 text-cyan-400" %>
+    </a>
+    <div class="items-center flex-shrink-0 hidden lg:flex">
+      <% if current_user.present? %>
+        <div class="self-center px-8 py-3 rounded">
+          <ul class="items-stretch hidden lg:flex">
+            <li class="flex">
+              <%= link_to "Hello #{current_user.first_name}! UPLOAD NEW BOOK", new_book_path, class: "btn-hello" %>
+            </li>
+          </ul>
+        </div>
+        <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "self-center px-8 py-3 font-semibold rounded dark:bg-amber-400 dark:text-gray-900" %>
+      <% else %>
+        <%= link_to "Sign in", user_session_path, class: "self-center px-8 py-3 rounded" %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "self-center px-8 py-3 font-semibold rounded dark:bg-cyan-400 dark:text-gray-900" %>
+      <% end %>
+    </div>
+    <button class="p-4 lg:hidden">
+      <%= inline_svg "mobile_button.svg", class: "w-6 h-6 dark:text-gray-100" %>
+    </button>
+  </div>
 </nav>

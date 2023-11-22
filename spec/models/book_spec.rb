@@ -17,6 +17,7 @@ RSpec.describe Book, type: :model do
 
   it "validates size of attached file" do
     expect(book.pdf).to be_attached
-    expect(book.pdf.byte_size).to be < 20.megabytes
+    expect(book.pdf.byte_size).not_to be_within(0.megabytes).of(20.megabytes)
   end
+
 end

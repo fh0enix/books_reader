@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
+gem 'active_storage_validations'
 gem "bootsnap", require: false
 gem "devise"
 gem "rails", "~> 7.1.1"

@@ -99,8 +99,7 @@ RSpec.describe BooksController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      subject { post :create, params: { book: valid_book_attributes.merge(pdf: fixture_file_upload('test.pdf', 'application/pdf')) } }
-
+      subject { post :create, params: { book: valid_book_attributes.merge(pdf: fixture_file_upload(File.open("spec/support/files/test.pdf"), "application/pdf")) } }
       it "creates a new Book with an attached PDF" do
         expect { subject }.to change(Book, :count).by(1)
         expect(assigns(:book).pdf).to be_attached

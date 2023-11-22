@@ -1,0 +1,28 @@
+<div class="flex justify-center m-10">
+	<div class="max-w-lg p-4 shadow-md dark:dark:bg-gray-900 dark:dark:text-gray-500 rounded-2xl">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post }, defaults: { input_html: { class: "form" } }) do |f| %>
+      <div class="my-5">
+        <%= f.input :user_name,
+                    label: false,
+                    hint: "USER NAME ",
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    label: false,
+                    hint: "PASSWORD ",
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me,
+                    input_html: { class: "inline-flex items-center" },
+                    label: false,
+                    hint: " REMEMBER ME",
+                    as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="grid form-actions">
+        <%= f.button :submit, "Log in", class: "btn-green" %>
+      </div>
+    <% end %>
+  </div>
+</div>

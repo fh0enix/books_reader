@@ -1,0 +1,48 @@
+<div class="flex justify-center m-10">
+	<div class="max-w-lg p-4 shadow-md dark:dark:bg-gray-900 dark:dark:text-gray-500 rounded-2xl">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { input_html: { class: "form" } }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="my-5">
+        <%= f.input :first_name,
+                    label: false,
+                    hint: "FIRST NAME ",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "first_name" }%>
+        <%= f.input :last_name,
+                    label: false,
+                    hint: "LAST NAME ",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "last_name" }%>
+        <%= f.input :user_name,
+                    label: false,
+                    hint: "USER NAME ",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "user_name" }%>
+        <%= f.input :email,
+                    label: false,
+                    hint: "EMAIL ",
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" }%>
+        <%= f.input :password,
+                    label: false,
+                    required: true,
+                    hint: ("PASSWORD #{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    label: false,
+                    hint: "PASSWORD CONFIRMATION ",
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+      </div>
+
+      <div class="grid form-actions">
+        <%= f.button :submit, "Sign up", class:"btn-green" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -2,9 +2,11 @@
   .flash {
     @apply w-full mx-auto md:w-2/3;
   }
+
   .flash .flash-notice {
     @apply inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50;
   }
+
   .flash .flash-alert {
     @apply inline-block px-3 py-2 mb-5 font-medium text-red-500 rounded-lg bg-red-50;
   }

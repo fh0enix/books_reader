@@ -10,17 +10,13 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body class="bg-gray-400">
-
+  <body class="bg-gray-700">
+    <%= render 'layouts/header' %>
     <div class="flash">
       <%= render 'layouts/alerts' %>
     </div>
-
     <main>
       <%= yield %>
     </main>
-
   </body>
-
 </html>

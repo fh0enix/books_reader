@@ -41,6 +41,10 @@ class BooksController < ApplicationController
     redirect_to books_path, alert: "Book was successfully deleted."
   end
 
+  def search
+    @book = BooksIndex.query(query_string: { fields: [:title, :author] })
+  end
+
   private
 
   def collection
@@ -52,6 +56,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :isbn, :description, :pdf)
+    params.require(:book).permit(:title, :author, :isbn, :description, :pdf, :search)
   end
 end

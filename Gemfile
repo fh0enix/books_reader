@@ -4,7 +4,7 @@ ruby "3.2.2"
 
 gem 'active_storage_validations'
 gem "bootsnap", require: false
-gem "chewy"
+gem "chewy", '~> 7.0'
 gem "devise"
 gem "rails", "~> 7.1.1"
 gem "sprockets-rails"

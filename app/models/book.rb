@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  update_index('books') { self }
+
   has_one_attached :pdf, dependent: :destroy
 
   validates :title, :isbn, :author, presence: true

@@ -310,7 +310,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   bootsnap
-  chewy
+  chewy (~> 7.0)
   debug
   devise
   factory_bot_rails

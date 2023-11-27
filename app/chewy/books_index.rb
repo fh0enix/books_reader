@@ -1,4 +1,4 @@
-class BookIndex < Chewy::Index
+class BooksIndex < Chewy::Index
   index_scope Book
   field :author
   field :title

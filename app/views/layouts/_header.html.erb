@@ -4,6 +4,9 @@
       <%= inline_svg "book.svg", class: "w-8 h-8 text-cyan-400" %>
     </a>
     <div class="items-center flex-shrink-0 hidden lg:flex">
+
+      <%= render "layouts/search" %>
+
       <% if current_user.present? %>
         <div class="self-center px-8 py-3 rounded">
           <ul class="items-stretch hidden lg:flex">

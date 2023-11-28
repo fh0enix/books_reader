@@ -8,6 +8,6 @@
   }
 
   .book-cover {
-    @apply object-cover object-center w-full rounded-t-md h-72 dark:dark:bg-gray-500;
+    @apply object-cover object-center w-full rounded-t-md h-min dark:dark:bg-gray-500;
   }
 }

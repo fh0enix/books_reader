@@ -1,14 +1,11 @@
 <div class="book-par">
-  <img src="https://source.unsplash.com/random/300x300" alt="" class="book-cover">
-  <div class="flex flex-col justify-between p-6 space-y-8">
-    <div class="space-y-2">
-      <h2 class="text-3xl font-semibold truncate tracki"><%= book.respond_to?(:title) ? book.title : book._data['title'] %></h2>
-      <p class="text-lg italic font-light text-gray-800 dark:text-white overline"><%= book.respond_to?(:author) ? book.author : book._data['author'] %></p>
-      <% if book.respond_to?(:description) %>
-        <p class="truncate dark:dark:text-gray-100"><%= book.description %></p>
-        <p class="text-xs text-gray-500 dark:text-gray-500 overline">ISBN:<%= book.isbn %></p>
-        <%= link_to "READ if You LOG IN)", book_path(book), class: "btn-green" %>
-      <% end %>
-    </div>
-  </div>
+  <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" alt="" class="book-cover">
+  <% if book.is_a?(Book) %>
+    <!-- Render details for a regular book -->
+    <%= render "books/regular_book", book: book %>
+  <% elsif book.is_a?(BooksIndex) %>
+    <!-- Render details for a search result -->
+    <%= render "books/search_book", book: book %>
+  <% end %>
+  <%= link_to "READ if You LOG IN)", book_path(book.id), class: "btn-green" %>
 </div>

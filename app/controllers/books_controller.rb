@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   def index
     @books = if params[:query].present?
-                BooksIndex.query(query_string: { fields: [:title, :author_name], query: params[:query] })
+                BooksIndex.query(query_string: { fields: [:title, :author], query: params[:query] })
               else
                 collection
               end

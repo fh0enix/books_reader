@@ -19,5 +19,4 @@ RSpec.describe Book, type: :model do
     expect(book.pdf).to be_attached
     expect(book.pdf.byte_size).not_to be_within(0.megabytes).of(20.megabytes)
   end
-
 end

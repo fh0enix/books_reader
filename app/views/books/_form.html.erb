@@ -11,7 +11,10 @@
     </div>
     <div class="my-5">
       <%= f.input :description, label: false, hint: "DESCRIPTION " %>
-     </div>
+    </div>
+    <div class="my-5">
+      <%= f.input :pdf, as: :file, label: false, hint: "PDF File (up to 20MB)" %>
+    </div>
     <div class="my-5">
       <%= f.button :submit, class: "btn-green" %>
     </div>

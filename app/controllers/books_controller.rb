@@ -1,8 +1,6 @@
 class BooksController < ApplicationController
   def index
     @books = params[:query].present? ? search : collection
-
-    flash[:notice] = @books.any? ? "Total #{@books.count} book(s) here." : "No book(s) found."
   end
 
   def show
@@ -44,7 +42,11 @@ class BooksController < ApplicationController
   end
 
   def search
-    BooksIndex.query(query_string: { fields: [:title, :author], query: params[:query] })
+    search = BooksIndex.query(query_string: { fields: [:title, :author, :isbn], query: params[:query] })
+
+    flash.now[:notice] = search.any? ? "Total #{search.count} book(s) found." : "No book(s) found."
+
+    search
   end
 
   private

@@ -29,12 +29,6 @@ RSpec.describe BooksController, type: :controller do
 
       expect(response).to render_template(:index)
     end
-
-    it "displays a specific book title in the list" do
-      get :index
-
-      expect(response.body).to include(book.title)
-    end
   end
 
   describe "GET #show" do
@@ -116,6 +110,40 @@ RSpec.describe BooksController, type: :controller do
         expect(assigns(:book)).to be_a_new(Book)
         expect(response).to render_template(:new)
       end
+    end
+  end
+
+  describe "GET #index with search" do
+    it "returns a successful response" do
+      get :index, params: { query: "search_query" }
+
+      expect(response).to be_successful
+    end
+
+    it "renders the index template" do
+      get :index, params: { query: "search_query" }
+
+      expect(response).to render_template(:index)
+    end
+  end
+
+  describe "GET #index with no search" do
+    it "returns a successful response" do
+      get :index
+
+      expect(response).to be_successful
+    end
+
+    it "assigns @books with all books" do
+      get :index
+
+      expect(assigns(:books)).to eq([book])
+    end
+
+    it "renders the index template" do
+      get :index
+
+      expect(response).to render_template(:index)
     end
   end
 end

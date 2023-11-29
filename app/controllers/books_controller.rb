@@ -1,10 +1,8 @@
 class BooksController < ApplicationController
   def index
-    @books = if params[:query].present?
-                BooksIndex.query(query_string: { fields: [:title, :author], query: params[:query] })
-              else
-                collection
-              end
+    @books = params[:query].present? ? search : collection
+
+    flash[:notice] = @books.any? ? "Total #{@books.count} book(s) here." : "No book(s) found."
   end
 
   def show
@@ -43,6 +41,10 @@ class BooksController < ApplicationController
   def destroy
     resourse.destroy
     redirect_to books_path, alert: "Book was successfully deleted."
+  end
+
+  def search
+    BooksIndex.query(query_string: { fields: [:title, :author], query: params[:query] })
   end
 
   private
